@@ -1,0 +1,5 @@
+name: Grafana
+description: |
+  Virtualization dashboard
+version: 5
+category: Monitoring
