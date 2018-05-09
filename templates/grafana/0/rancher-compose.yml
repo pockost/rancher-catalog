@@ -8,12 +8,28 @@ catalog:
   uuid: grafana-1
   minimum_rancher_version: 1.6.0
   questions:
+
+    - variable: influxdb_database
+      description: "InfluxDB database name, create on first run"
+      label: "InfluxDB Database"
+      required: true
+      default: "super_database"
+      type: "string"
+
+    - variable: influxdb_admin_user
+      description: "InfluxDB admin user, set on first run"
+      label: "InfluxDB Admin User"
+      required: true
+      default: "influx_admin_user"
+      type: "string"
+
     - variable: influxdb_admin_password
       description: "InfluxDB admin password, set on first run"
       label: "InfluxDB Admin Password"
       required: true
       default: "influx_admin_password"
       type: "string"
+
 
 services:
 
