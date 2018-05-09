@@ -13,7 +13,6 @@ services:
         "## General \n
         external_url 'https://git.localhost' \n
         registry_url 'https://registry.localhost' \n\n
-
         ## GitLab rails"
 
     ports:
