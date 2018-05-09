@@ -58,6 +58,23 @@ catalog:
       default: "http://localhost.local/"
       type: "string"
 
+    - variable: volume_driver
+      description: "Volume driver to use with this service"
+      label: "Volume driver"
+      required: true
+      default: "local"
+      type: enum
+      options:
+        - local
+        - rancher-nfs
+
+    - variable: influxdb_volume
+      description: "InfluxDB volume, used to keep data safe"
+      label: "InfluxDB Volume"
+      required: true
+      default: "grafana_influxdb_var_lib_influxdb"
+      type: "string"
+
 services:
 
   telegraf:

@@ -11,6 +11,8 @@ services:
       INFLUXDB_ADMIN_PASSWORD: ${influxdb_admin_password}
       INFLUXDB_USER: ${influxdb_user}
       INFLUXDB_USER_PASSWORD: ${influxdb_user_password}
+    volumes:
+      - ${infludb_volume}:/var/lib/influxdb
 
   telegraf:
     image: pockost/telegraf-rancher
@@ -42,3 +44,8 @@ services:
     depends_on:
       - influxdb
       - telegraf
+
+volumes:
+
+  ${influxdb_volume}:
+    driver: ${volume_driver}
