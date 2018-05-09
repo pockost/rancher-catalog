@@ -7,6 +7,13 @@ catalog:
   description: "Virtualization dashboard"
   uuid: grafana-1
   minimum_rancher_version: 1.6.0
+  questions:
+    - variable: influxdb_admin_password
+      description: "InfluxDB admin password, set on first run"
+      label: "InfluxDB Admin Password"
+      required: true
+      default: "influx_admin_password"
+      type: "string"
 
 services:
 
