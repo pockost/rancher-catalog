@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+
+  influxdb:
+    image: influxdb:1.5-alpine
+    environment:
+      INFLUXDB_HTTP_AUTH_ENABLED: 'true'
+      INFLUXDB_DB: super_database
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: password
+      INFLUXDB_USER: user
+      INFLUXDB_USER_PASSWORD: password
+
+  telegraf:
+    image: pockost/telegraf-rancher
+    environment:
+      HOST_ETC: /hostfs/etc
+      HOST_MOUNT_PREFIX: /hostfs
+      HOST_PROC: /hostfs/proc
+      HOST_SYS: /hostfs/sys
+      INFLUXDB_HOST: http://influxdb:8086
+      INFLUXDB_NAME: super_database
+      INFLUXDB_USER: user
+      INFLUXDB_PASSWORD: password
+    depends_on:
+      - influxdb
+    volumes:
+    - /var/run/utmp:/var/run/utmp:ro
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /sys:/rootfs/sys:ro
+    - /proc:/rootfs/proc:ro
+    - /etc:/rootfs/etc:ro
+    - /:/hostfs:ro
+    labels:
+      io.rancher.scheduler.global: 'true'
+
+  grafana:
+    image: grafana/grafana:5.1.2
+    environment:
+      GF_SERVER_ROOT_URL: http://grafana.local/
+    depends_on:
+      - influxdb
+      - telegraf

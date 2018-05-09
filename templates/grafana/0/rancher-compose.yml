@@ -1,7 +1,17 @@
-.catalog:
-  name: # Name of the versioned template of the Catalog Entry
-  version: # Version of the versioned template of the Catalog Entry
-  description: # Description of the versioned template of the Catalog Entry
-  uuid: # Unique identifier to be used for upgrades. Please see note.
-  minimum_rancher_version: # The minimum version of Rancher that supports the template
-  questions: #Used to request user input for configuration options
+version: '2'
+
+catalog:
+
+  name: "Grafana"
+  version: "5.0.2"
+  description: "Virtualization dashboard"
+  uuid: grafana-1
+  minimum_rancher_version: 1.6.0
+
+services:
+
+  grafana:
+    scale: 1
+
+  influxdb:
+    scale: 1
