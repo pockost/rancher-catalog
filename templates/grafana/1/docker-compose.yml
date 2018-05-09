@@ -39,6 +39,7 @@ services:
 
   grafana:
     image: grafana/grafana:5.1.2
+    user: "104"
     environment:
       GF_SERVER_ROOT_URL: ${grafana_url}
     volumes:
