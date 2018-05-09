@@ -12,7 +12,7 @@ services:
       INFLUXDB_USER: ${influxdb_user}
       INFLUXDB_USER_PASSWORD: ${influxdb_user_password}
     volumes:
-      - ${infludb_volume}:/var/lib/influxdb
+      - grafana_influxdb_var_lib_influxdb:/var/lib/influxdb
 
   telegraf:
     image: pockost/telegraf-rancher
@@ -41,11 +41,16 @@ services:
     image: grafana/grafana:5.1.2
     environment:
       GF_SERVER_ROOT_URL: ${grafana_url}
+    volumes:
+      - grafana_grafana_var_lib_grafana:/var/lib/grafana
     depends_on:
       - influxdb
       - telegraf
 
 volumes:
 
-  ${influxdb_volume}:
+  grafana_influxdb_var_lib_influxdb:
+    driver: ${volume_driver}
+
+  grafana_grafana_var_lib_grafana:
     driver: ${volume_driver}

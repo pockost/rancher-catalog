@@ -68,22 +68,10 @@ catalog:
         - local
         - rancher-nfs
 
-    - variable: influxdb_volume
-      description: "InfluxDB volume, used to keep data safe"
-      label: "InfluxDB Volume"
-      required: true
-      default: "grafana_influxdb_var_lib_influxdb"
-      type: "string"
-
 services:
-
-  telegraf:
-    start_on_create: true
 
   grafana:
     scale: 1
-    start_on_create: true
 
   influxdb:
     scale: 1
-    start_on_create: true
