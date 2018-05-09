@@ -9,6 +9,13 @@ catalog:
   minimum_rancher_version: 1.6.0
   questions:
 
+    - variable: influxdb_http_auth_enabled
+      description: "Enable InfluxDB authentication system"
+      label: "InfluxDB Auth Enabled"
+      required: true
+      default: true
+      type: "boolean"
+
     - variable: influxdb_database
       description: "InfluxDB database name, create on first run"
       label: "InfluxDB Database"
@@ -16,11 +23,11 @@ catalog:
       default: "super_database"
       type: "string"
 
-    - variable: influxdb_admin_user
-      description: "InfluxDB admin user, set on first run"
-      label: "InfluxDB Admin User"
+    - variable: influxdb_admin
+      description: "InfluxDB admin, set on first run"
+      label: "InfluxDB Admin"
       required: true
-      default: "influx_admin_user"
+      default: "influx_admin"
       type: "string"
 
     - variable: influxdb_admin_password
@@ -30,6 +37,26 @@ catalog:
       default: "influx_admin_password"
       type: "string"
 
+    - variable: influxdb_user
+      description: "InfluxDB user, set on first run"
+      label: "InfluxDB User"
+      required: true
+      default: "influxdb_user"
+      type: "string"
+
+    - variable: influxdb_user_password
+      description: "InfluxDB user password, set on first run"
+      label: "InfluxDB User Password"
+      required: true
+      default: "influxdb_user_password"
+      type: "string"
+
+    - variable: grafana_url
+      description: "Grafana URL, used to generate assets url"
+      label: "Grafana URL"
+      required: true
+      default: "http://localhost.local/"
+      type: "string"
 
 services:
 
