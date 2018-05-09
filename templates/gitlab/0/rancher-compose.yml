@@ -1,0 +1,14 @@
+version: '2'
+
+catalog:
+
+  name: "GitLab"
+  version: "10.7"
+  description: "Free GitHub alternative"
+  uuid: gitlab-1
+  minimum_rancher_version: 1.6.0
+
+services:
+
+  runner01:
+    scale: 1

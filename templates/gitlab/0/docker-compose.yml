@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+
+  runner01:
+    image: gitlab/gitlab-runner:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - runner01_data:/etc/gitlab-runner
+
+volumes:
+
+  runner01_data:
+    driver: rancher-nfs
