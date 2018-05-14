@@ -13,15 +13,41 @@ catalog:
       description: "SSH port to expose on host. Will be used to bind TCP"
       label: "SSH Port"
       required: true
-      default: "1433"
+      default: "2222"
       type: "string"
 
     - variable: gitlab_omnibus_config
       description: "Omnibus config used to setup GitLab"
       label: "Omnibus Config"
       default: "## General\n
-        external_url 'http://git.local'\n
-        registry_external_url 'http://registry.local'"
+      external_url '<EXTERNAL_URL>'\n
+      registry_external_url '<REGISTRY>'\n
+      \n## GitLab rails\n
+      gitlab_rails['gitlab_shell_ssh_port'] = <GITLAB_SSH_PORT>\n
+      gitlab_rails['smtp_enable'] = <SMTP_ENABLE>\n
+      gitlab_rails['smtp_address'] = <SMTP_SERVER_ADDRESS>\n
+      gitlab_rails['smtp_port'] = <SMTP_PORT>\n
+      gitlab_rails['smtp_user_name'] = <SMTP_USER_NAME>\n
+      gitlab_rails['smtp_password'] = <SMTP_PASSWORD>\n
+      gitlab_rails['smtp_domain'] = <SMTP_DOMAIN>\n
+      gitlab_rails['smtp_authentication'] = <SMTP_AUTHENTICATION>\n
+      gitlab_rails['smtp_enable_starttls_auto'] = <SMTP_ENABLE_STARTTLS_AUTO>\n
+      gitlab_rails['smtp_tls'] = <SMTP_TLS>\n
+      gitlab_rails['smtp_openssl_verify_mode'] = <SMTP_OPENSSL_VERIFY_MODE>\n
+      gitlab_rails['gitlab_email_from'] = <GITLAB_EMAIL_FROM>\n
+      gitlab_rails['gitlab_email_reply_to'] = <GITLAB_EMAIL_REPLY_TO>\n
+      \n## Nginx\n
+      nginx['listen_port'] = 80\n
+      nginx['listen_https'] = false\n
+      \n## Registry Nginx\n
+      registry_nginx['listen_port'] = 5000\n
+      registry_nginx['listen_https'] = false\n
+      registry_nginx['proxy_set_headers'] = {\n
+        'X-Forwarded-Proto' => 'https'\n
+        'X-Forwarded-Ssl' => 'on'\n
+      }\n
+      \n## Registry\n
+      registry['registry_http_addr'] = 'localhost:5001'"
       type: "multiline"
 
 services:
