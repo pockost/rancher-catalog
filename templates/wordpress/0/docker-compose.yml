@@ -9,6 +9,7 @@ services:
       MYSQL_DATABASE: ${mariadb_database}
       MYSQL_USER: ${mariadb_user}
       MYSQL_PASSWORD: ${mariadb_user_password}
+      TZ: ${timezone}
     volumes:
       - mariadb_data:/var/lib/influxdb
 
@@ -19,6 +20,7 @@ services:
       WORDPRESS_DB_NAME: ${mariadb_database}
       WORDPRESS_DB_USER: ${mariadb_user}
       WORDPRESS_DB_PASSWORD: ${mariadb_user_password}
+      TZ: ${timezone}
     volumes:
       - wordpress_data:/var/www/html
     depends_on:
