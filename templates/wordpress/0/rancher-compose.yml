@@ -70,8 +70,8 @@ catalog:
 
 services:
 
-  grafana:
+  wordpress:
     scale: 1
 
-  influxdb:
+  mariadb:
     scale: 1
