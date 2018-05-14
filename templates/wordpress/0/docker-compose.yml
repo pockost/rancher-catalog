@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+
+  mariadb:
+    image: mariadb:${mariadb_version}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${mariadb_root_password}
+      MYSQL_DATABASE: ${mariadb_database}
+      MYSQL_USER: ${mariadb_user}
+      MYSQL_PASSWORD: ${mariadb_user_password}
+    volumes:
+      - mariadb_data:/var/lib/influxdb
+
+  wordpress:
+    image: wordpress:${wordpress_version}
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_NAME: ${mariadb_database}
+      WORDPRESS_DB_USER: ${mariadb_user}
+      WORDPRESS_DB_PASSWORD: ${mariadb_user_password}
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - mariadb
+
+volumes:
+
+  mariadb_data:
+    driver: ${volume_driver}
+
+  wordpress_data:
+    driver: ${volume_driver}
