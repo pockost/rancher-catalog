@@ -22,7 +22,7 @@ catalog:
       default: "## General\n\
       external_url '<EXTERNAL_URL>'\n\
       registry_external_url '<REGISTRY_EXTERNAL_URL>'\n\
-      \n## GitLab rails\n
+      \n## GitLab rails\n\
       gitlab_rails['gitlab_shell_ssh_port'] = <GITLAB_SSH_PORT>\n\
       gitlab_rails['smtp_enable'] = <SMTP_ENABLE>\n\
       gitlab_rails['smtp_address'] = <SMTP_SERVER_ADDRESS>\n\
