@@ -62,18 +62,21 @@ catalog:
       description: "SFTP port to expose on host"
       label: "SFTP Port"
       required: true
+      default: "2222"
       type: "string"
 
     - variable: sftp_user
       description: "SFTP user used to connect"
       label: "SFTP User"
       required: true
+      default: "super_user"
       type: "string"
 
     - variable: sftp_password
       description: "SFTP password used to connect"
       label: "SFTP Password"
       required: true
+      default: "super_password"
       type: "password"
 
     - variable: timezone
