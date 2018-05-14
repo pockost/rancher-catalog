@@ -3,7 +3,7 @@ version: '2'
 catalog:
 
   name: "GitLab"
-  version: "10"
+  version: "10.7.3-ce.0"
   description: "Free GitHub alternative"
   uuid: gitlab-1
   minimum_rancher_version: 1.6.0
@@ -15,6 +15,15 @@ catalog:
       required: true
       default: "1433"
       type: "string"
+
+    - variable: gitlab_omnibus_config
+      description: "Omnibus config used to setup GitLab"
+      label: "Omnibus Config"
+      default: |
+      ## General
+      external_url 'http://git.local'
+      registry_external_url 'http://registry.local'
+      type: "multiline"
 
 services:
 

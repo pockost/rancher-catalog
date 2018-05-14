@@ -9,13 +9,7 @@ services:
       - gitlab_log_data:/var/log/gitlab
       - gitlab_conf:/etc/gitlab
     environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        ## General
-        external_url 'https://git.localhost'
-        registry_external_url 'https://registry.localhost'
-
-        ## GitLab rails
-        gitlab_rails['gitlab_shell_ssh_port'] = ${gitlab_ssh_port}
+      GITLAB_OMNIBUS_CONFIG: ${gitlab_omnibus_config}
     ports:
       - ${gitlab_ssh_port}:22/tcp
 
