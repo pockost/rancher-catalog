@@ -19,8 +19,8 @@ catalog:
     - variable: gitlab_omnibus_config
       description: "Omnibus config used to setup GitLab"
       label: "Omnibus Config"
-      default: "# General
-      external_url '<EXTERNAL_URL>'
+      default: "# General\n" +
+      "external_url '<EXTERNAL_URL>'
       registry_external_url '<REGISTRY_EXTERNAL_URL>'\n
       \n# GitLab rails\n
       gitlab_rails['gitlab_shell_ssh_port'] = <GITLAB_SSH_PORT>\n
