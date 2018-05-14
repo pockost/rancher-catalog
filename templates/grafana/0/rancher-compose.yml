@@ -31,7 +31,7 @@ catalog:
       type: "string"
 
     - variable: influxdb_admin_password
-      description: "InfluxDB admin password, set on first run"
+      description: "InfluxDB admin password, set on first run. Default: influx_admin_password"
       label: "InfluxDB Admin Password"
       required: true
       default: "influx_admin_password"
@@ -45,7 +45,7 @@ catalog:
       type: "string"
 
     - variable: influxdb_user_password
-      description: "InfluxDB user password, set on first run"
+      description: "InfluxDB user password, set on first run. Default: influxdb_user_password"
       label: "InfluxDB User Password"
       required: true
       default: "influxdb_user_password"
