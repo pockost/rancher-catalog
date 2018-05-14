@@ -3,11 +3,17 @@ version: '2'
 catalog:
 
   name: "GitLab"
-  version: "10.7.3-ce.0"
+  version: "1.0.0"
   description: "Free GitHub alternative"
   uuid: gitlab-1
   minimum_rancher_version: 1.6.0
   questions:
+
+    - variable: gitlab_version
+      description: "Specify GitLab base image version. Will be pull from Docker Hub"
+      label: "GitLab Version"
+      required: true
+      type: "string"
 
     - variable: gitlab_ssh_port
       description: "SSH port to expose on host. Will be used to bind TCP"
