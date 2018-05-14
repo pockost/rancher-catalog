@@ -19,7 +19,9 @@ catalog:
     - variable: gitlab_omnibus_config
       description: "Omnibus config used to setup GitLab"
       label: "Omnibus Config"
-      default: "## General"
+      default: "## General
+      external_url 'http://git.local'
+      registry_external_url 'http://registry.local'"
       type: "multiline"
 
 services:
