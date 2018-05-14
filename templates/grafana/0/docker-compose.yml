@@ -38,7 +38,7 @@ services:
       io.rancher.scheduler.global: 'true'
 
   grafana:
-    image: grafana/grafana:4.6.3
+    image: grafana/grafana:${grafana_version}
     environment:
       GF_SERVER_ROOT_URL: ${grafana_url}
     volumes:
