@@ -1,0 +1,10 @@
+version: '2'
+
+catalog:
+
+  name: "Moodle"
+  version: "standard"
+  description: "Learning Management System"
+  uuid: moodle-1
+  minimum_rancher_version: 1.6.0
+  questions:
