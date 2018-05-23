@@ -1,0 +1,88 @@
+version: '2'
+
+catalog:
+
+  name: "Moodle"
+  version: "git"
+  description: "Learning Management System"
+  uuid: moodle-1
+  minimum_rancher_version: 1.6.0
+  questions:
+
+    - variable: mariadb_version
+      description: "Specify MariaDB base image version. Will be pull from Docker Hub"
+      label: "MariaDB Version"
+      required: true
+      default: "latest"
+      type: "string"
+
+    - variable: mariadb_database
+      description: "MariaDB database name, create on first run"
+      label: "MariaDB Database"
+      required: true
+      default: "super_database"
+      type: "string"
+
+    - variable: mariadb_root_password
+      description: "MariaDB root password, set on first run. Default: super_password"
+      label: "MariaDB Root Password"
+      required: true
+      default: "super_password"
+      type: "password"
+
+    - variable: mariadb_user
+      description: "MariaDB user, set on first run"
+      label: "MariaDB User"
+      required: true
+      default: "super_user"
+      type: "string"
+
+    - variable: mariadb_user_password
+      description: "MariaDB user password, set on first run. Default: super_password"
+      label: "MariaDB User Password"
+      required: true
+      default: "super_password"
+      type: "password"
+
+    - variable: moodle_php_url
+      description: "Specify how to find PHP docker image of Moodle"
+      label: "Moodle PHP URL"
+      required: true
+      type: "string"
+
+    - variable: moodle_url
+      description: "Moodle final URL, used to generate assets url"
+      label: "Moodle URL"
+      required: true
+      default: "http://localhost"
+      type: "string"
+
+    - variable: moodle_proto
+      description: "Moodle protocol, used to generate assets url"
+      label: "Moodle Enable HTTPS"
+      required: true
+      default: true
+      type: boolean
+
+    - variable: moodle_nginx_url
+      description: "Specify how to find Nginx docker image of Moodle"
+      label: "Moodle Nginx URL"
+      required: true
+      type: "string"
+
+    - variable: timezone
+      description: "Timezone used to setup containers date"
+      label: "Timezone"
+      required: true
+      default: "Europe/Paris"
+      type: "string"
+
+    - variable: volume_driver
+      description: "Volume driver to use with this service"
+      label: "Volume driver"
+      required: true
+      default: "rancher-nfs"
+      type: enum
+      options:
+        - local
+        - rancher-nfs

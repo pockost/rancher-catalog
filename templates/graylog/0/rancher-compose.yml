@@ -1,0 +1,73 @@
+version: '2'
+
+catalog:
+
+  name: "Graylog"
+  version: "1.0.0"
+  description: "Log management platform"
+  minimum_rancher_version: 1.6.0
+  questions:
+
+    - variable: mongo_version
+      description: "Specify MongoDB base image version. Will be pull from Docker Hub"
+      label: "MongoDB Version"
+      required: true
+      default: "latest"
+      type: "string"
+
+    - variable: elasticsearch_version
+      description: "Specify Elasticsearch base image version. Will be pull from Docker Hub"
+      label: "Elasticsearch Version"
+      required: true
+      default: "5.6.8"
+      type: "string"
+
+    - variable: elasticsearch_cluster_name
+      description: "Elasticsearch cluster name"
+      label: "Elasticsearch Cluster Name"
+      required: true
+      default: "super_cluster"
+      type: "string"
+
+    - variable: graylog_version
+      description: "Specify Graylog base image version. Will be pull from Docker Hub"
+      label: "Graylog Version"
+      required: true
+      default: "latest"
+      type: "string"
+
+    - variable: graylog_password_secret
+      description: "Graylog secret password, Generate with: pwgen -N 1 -s 96"
+      label: "Graylog Secret Password"
+      required: true
+      type: "string"
+
+    - variable: graylog_password_sha2
+      description: "Graylog root password sha2, Generate with: echo -n yourpassword | shasum -a 256"
+      label: "Graylog Root Password Sha2"
+      required: true
+      type: "string"
+
+    - variable: graylog_web_endpoint_uri
+      description: "Graylog URL, used to generate assets' url"
+      label: "Graylog URL"
+      required: true
+      default: "http://localhost/"
+      type: "string"
+
+    - variable: timezone
+      description: "Timezone used to setup containers date"
+      label: "Timezone"
+      required: true
+      default: "Europe/Paris"
+      type: "string"
+
+    - variable: volume_driver
+      description: "Volume driver to use with this service"
+      label: "Volume driver"
+      required: true
+      default: "rancher-nfs"
+      type: enum
+      options:
+        - local
+        - rancher-nfs
