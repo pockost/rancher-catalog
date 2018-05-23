@@ -1,6 +1,6 @@
 name: Moodle
 description: |
   Learning Management System
-version: standard
+version: git
 category: Learning
 maintainer: Maintained by Pockost company

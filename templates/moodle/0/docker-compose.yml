@@ -2,5 +2,47 @@ version: '2'
 
 services:
 
-  busybox:
-    image: busybox
+  mariadb:
+    image: mariadb:${mariadb_version}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${mariadb_root_password}
+      MYSQL_DATABASE: ${mariadb_database}
+      MYSQL_USER: ${mariadb_user}
+      MYSQL_PASSWORD: ${mariadb_user_password}
+      TZ: ${timezone}
+    volumes:
+      - mariadb_data:/var/lib/influxdb
+
+  php:
+    image: ${moodle_php_url}
+    environment:
+      MOODLE_URL: ${moodle_url}
+      MOODLE_DATABASE_HOST: mariadb
+      MOODLE_DATABASE_NAME: ${mariadb_database}
+      MOODLE_DATABASE_USER: ${mariadb_user}
+      MOODLE_DATABASE_PASSWORD: ${mariadb_user_password}
+      TZ: ${timezone}
+      MOODLE_HTTPS: ${moodle_proto}
+    volumes:
+      - moodle_data:/var/www/html/moodledata
+    depends_on:
+      - mariadb
+
+  nginx:
+    image: ${moodle_nginx_url}
+    environment:
+      TZ: ${timezone}
+    volumes:
+    - moodle_data:/var/www/html/moodledata
+    labels:
+      io.rancher.sidekicks: php
+    depends_on:
+      - php
+
+volumes:
+
+  mariadb_data:
+    driver: ${volume_driver}
+
+  moodle_data:
+    driver: ${volume_driver}
