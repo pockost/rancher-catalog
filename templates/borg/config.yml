@@ -1,0 +1,6 @@
+name: Borg
+description: |
+  Free BorgBackup (short: Borg) is a deduplicating backup program
+version: standard
+category: Backup
+maintainer: Maintained by Pockost company

@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+
+  backup:
+    image: pockost/borgbackup:${borg_version}
+    volumes:
+      - /srv:/srv
+      - /backup:/backup
+    environment:
+      BORG_PASSPHRASE: ${borg_passphrase}
+      BORG_TARGET: ${borg_target}
+      BORG_SOURCES: ${borg_sources}
+      LFTP_TARGET: ${lftp_target}
+      CRON_DELAY: ${cron_schedule}
+      TZ: ${timezone}
