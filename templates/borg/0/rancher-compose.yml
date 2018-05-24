@@ -1,0 +1,56 @@
+version: '2'
+
+catalog:
+
+  name: "Borg"
+  version: "standard"
+  description: "Free BorgBackup (short: Borg) is a deduplicating backup program"
+  minimum_rancher_version: 1.6.0
+  questions:
+
+    - variable: borg_version
+      description: "Specify Borg base image version. Will be pull from Docker Hub"
+      label: "Borg Version"
+      required: true
+      default: "latest"
+      type: "string"
+
+    - variable: borg_passphrase
+      description: "Borg passphrase used to encrypt backups, set on first run"
+      label: "Borg passphrase"
+      required: true
+      default: "super_passphrase"
+      type: "string"
+
+    - variable: borg_target
+      description: "Directory used to stock backups"
+      label: "Borg target"
+      required: true
+      default: "/backup"
+      type: "string"
+
+    - variable: borg_sources
+      description: "Comma delimited list of the directories used to make backups. Exemple: `/srv/website, /data/database`"
+      label: "Borg sources"
+      required: true
+      type: "string"
+
+    - variable: lftp_target
+      description: "Domain name used to synchronize backups over lftp. Exemple: `dedibackup-dc2.online.net`"
+      label: "LFTP target"
+      required: true
+      type: "string"
+
+    - variable: cron_schedule
+      description: "The schedule with the default cron syntaxe"
+      label: "CRON Schedule"
+      required: true
+      default: "0 5 * * *"
+      type: "string"
+
+    - variable: timezone
+      description: "Timezone used to setup containers date"
+      label: "Timezone"
+      required: true
+      default: "Europe/Paris"
+      type: "string"
