@@ -1,6 +1,5 @@
 name: Grafana
 description: |
   Virtualization dashboard
-version: 2.0.0
 category: Monitoring
 maintainer: Maintained by Pockost company
