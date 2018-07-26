@@ -3,7 +3,7 @@ version: '2'
 catalog:
 
   name: "Grafana"
-  version: "1.0.0"
+  version: "standard"
   description: "Virtualization dashboard"
   uuid: grafana-1
   minimum_rancher_version: 1.6.0
