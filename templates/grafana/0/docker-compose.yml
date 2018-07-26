@@ -3,7 +3,7 @@ version: '2'
 services:
 
   influxdb:
-    image: influxdb:${grafana_version}
+    image: influxdb:${influxdb_version}
     environment:
       INFLUXDB_HTTP_AUTH_ENABLED: true
       INFLUXDB_DB: ${influxdb_database}
@@ -30,9 +30,9 @@ services:
     volumes:
     - /var/run/utmp:/var/run/utmp:ro
     - /var/run/docker.sock:/var/run/docker.sock:ro
-    - /sys:/rootfs/sys:ro
-    - /proc:/rootfs/proc:ro
-    - /etc:/rootfs/etc:ro
+    - /sys:/hostfs/sys:ro
+    - /proc:/hostfs/proc:ro
+    - /etc:/hostfs/etc:ro
     - /:/hostfs:ro
     labels:
       io.rancher.scheduler.global: 'true'
