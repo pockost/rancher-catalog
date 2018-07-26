@@ -3,10 +3,9 @@ version: '2'
 services:
 
   backup:
-    image: pockost/borgbackup:${borg_version}
+    image: pockost/borgbackup
     volumes:
-      - /srv:/srv
-      - /backup:/backup
+      - ${borg_target}:${borg_target}
     environment:
       BORG_PASSPHRASE: ${borg_passphrase}
       BORG_TARGET: ${borg_target}
@@ -14,3 +13,6 @@ services:
       LFTP_TARGET: ${lftp_target}
       CRON_DELAY: ${cron_schedule}
       TZ: ${timezone}
+      SLACK_WEBHOOK_URL: ${slack_webhook_url}
+      SLACK_ALERT_IDENTIFIER: ${slack_alert_identifier}
+      SLACK_ALERT_LINK: ${slack_alert_link}
