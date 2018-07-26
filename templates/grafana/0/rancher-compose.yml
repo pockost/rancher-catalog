@@ -16,13 +16,13 @@ catalog:
       type: "string"
 
     - variable: grafana_volume
-      description: "Specify path to store Grafana data."
+      description: "Specify path to store Grafana data. Must be owned by 472:472"
       label: "Grafana Volume"
       required: true
       type: "string"
 
     - variable: grafana_url
-      description: "Grafana URL, used to generate assets url"
+      description: "Grafana URL, used to generate assets url. Must end by slash"
       label: "Grafana URL"
       required: true
       type: "string"
