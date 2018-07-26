@@ -3,7 +3,7 @@ version: '2'
 catalog:
 
   name: "Graylog"
-  version: "1.0.0"
+  version: "standard"
   description: "Log management platform"
   minimum_rancher_version: 1.6.0
   questions:

@@ -3,7 +3,7 @@ version: '2'
 catalog:
 
   name: "GitLab"
-  version: "1.0.0"
+  version: "standard"
   description: "Free GitHub alternative"
   uuid: gitlab-1
   minimum_rancher_version: 1.6.0
