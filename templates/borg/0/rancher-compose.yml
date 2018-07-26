@@ -43,7 +43,6 @@ catalog:
       description: "Timezone used to setup containers date"
       label: "Timezone"
       required: true
-      default: "Europe/Paris"
       type: "string"
 
     - variable: slack_webhook_url
