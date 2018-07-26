@@ -15,15 +15,27 @@ catalog:
       required: true
       type: "string"
 
+    - variable: grafana_volume
+      description: "Specify path to store Grafana data."
+      label: "Grafana Volume"
+      required: true
+      type: "string"
+
     - variable: grafana_url
       description: "Grafana URL, used to generate assets url"
       label: "Grafana URL"
       required: true
       type: "string"
 
-    - variable: grafana_volume
-      description: "Specify path to store Grafana data."
-      label: "Grafana Volume"
+    - variable: influxdb_version
+      description: "Specify InfluxDB base image version. Will be pull from Docker Hub"
+      label: "InfluxDB Version"
+      required: true
+      type: "string"
+
+    - variable: influxdb_volume
+      description: "Specify path to store InfluxDB data"
+      label: "InfluxDB Volume"
       required: true
       type: "string"
 
@@ -40,7 +52,7 @@ catalog:
       type: "string"
 
     - variable: influxdb_admin_password
-      description: "InfluxDB admin password, set on first run. Default: influx_admin_password"
+      description: "InfluxDB admin password, set on first run"
       label: "InfluxDB Admin Password"
       required: true
       type: "password"
@@ -52,21 +64,7 @@ catalog:
       type: "string"
 
     - variable: influxdb_user_password
-      description: "InfluxDB user password, set on first run. Default: influxdb_user_password"
+      description: "InfluxDB user password, set on first run"
       label: "InfluxDB User Password"
       required: true
       type: "password"
-
-    - variable: influxdb_volume
-      description: "Specify path to store InfluxDB data."
-      label: "InfluxDB Volume"
-      required: true
-      type: "string"
-
-services:
-
-  grafana:
-    scale: 1
-
-  influxdb:
-    scale: 1
