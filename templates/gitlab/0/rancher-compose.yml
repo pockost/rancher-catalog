@@ -11,20 +11,37 @@ catalog:
 
     - variable: gitlab_version
       description: "Specify GitLab base image version. Will be pull from Docker Hub"
-      label: "GitLab Version"
+      label: "GitLab version"
       required: true
       type: "string"
 
     - variable: gitlab_ssh_port
       description: "SSH port to expose on host. Will be used to bind TCP"
-      label: "SSH Port"
+      label: "SSH port"
       required: true
-      default: "2222"
+      type: "string"
+
+    - variable: gitlab_data_volume
+      description: "Specify path to store GitLab data"
+      label: "GitLab data volume"
+      required: true
+      type: "string"
+
+    - variable: gitlab_log_volume
+      description: "Specify path to store GitLab logs"
+      label: "GitLab log volume"
+      required: true
+      type: "string"
+
+    - variable: gitlab_conf_volume
+      description: "Specify path to store GitLab configurations"
+      label: "GitLab conf volume"
+      required: true
       type: "string"
 
     - variable: gitlab_omnibus_config
       description: "Omnibus config used to setup GitLab"
-      label: "Omnibus Config"
+      label: "Omnibus config"
       default: "## General\n\
       external_url '<EXTERNAL_URL>'\n\
       registry_external_url '<REGISTRY_EXTERNAL_URL>'\n\
@@ -56,7 +73,20 @@ catalog:
       registry['registry_http_addr'] = 'localhost:5001'"
       type: "multiline"
 
-services:
+    - variable: gitlab_runner_version
+      description: "Specify GitLab runners base image version. Will be pull from Docker Hub"
+      label: "GitLab runners version"
+      required: true
+      type: "string"
 
-  runner01:
-    scale: 1
+    - variable: gitlab_runner01_volume
+      description: "Specify path to store GitLab runner01 data"
+      label: "GitLab runner01 volume"
+      required: true
+      type: "string"
+
+    - variable: gitlab_runner02_volume
+      description: "Specify path to store GitLab runner02 data"
+      label: "GitLab runner02 volume"
+      required: true
+      type: "string"

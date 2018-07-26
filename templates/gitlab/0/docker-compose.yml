@@ -5,39 +5,22 @@ services:
   gitlab:
     image: gitlab/gitlab-ce:${gitlab_version}
     volumes:
-      - gitlab_app_data:/var/opt/gitlab
-      - gitlab_log_data:/var/log/gitlab
-      - gitlab_conf:/etc/gitlab
+      - ${gitlab_data_volume}:/var/opt/gitlab
+      - ${gitlab_log_volume}:/var/log/gitlab
+      - ${gitlab_conf_volume}:/etc/gitlab
     environment:
       GITLAB_OMNIBUS_CONFIG: ${gitlab_omnibus_config}
     ports:
       - ${gitlab_ssh_port}:22/tcp
 
   runner01:
-    image: gitlab/gitlab-runner:latest
+    image: gitlab/gitlab-runner:${gitlab_runner_version}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - runner01_data:/etc/gitlab-runner
+      - ${gitlab_runner01_volume}:/etc/gitlab-runner
 
   runner02:
-    image: gitlab/gitlab-runner:latest
+    image: gitlab/gitlab-runner:${gitlab_runner_version}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - runner02_data:/etc/gitlab-runner
-
-volumes:
-
-  gitlab_app_data:
-    driver: rancher-nfs
-
-  gitlab_log_data:
-    driver: rancher-nfs
-
-  gitlab_conf:
-    driver: rancher-nfs
-
-  runner01_data:
-    driver: rancher-nfs
-
-  runner02_data:
-    driver: rancher-nfs
+      - ${gitlab_runner02_volume}:/etc/gitlab-runner
