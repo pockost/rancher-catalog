@@ -15,64 +15,53 @@ catalog:
       required: true
       type: "string"
 
-    - variable: influxdb_http_auth_enabled
-      description: "Enable InfluxDB authentication system"
-      label: "InfluxDB Auth Enabled"
+    - variable: grafana_url
+      description: "Grafana URL, used to generate assets url"
+      label: "Grafana URL"
       required: true
-      default: true
-      type: "boolean"
+      type: "string"
+
+    - variable: grafana_volume
+      description: "Specify path to store Grafana data."
+      label: "Grafana Volume"
+      required: true
+      type: "string"
 
     - variable: influxdb_database
       description: "InfluxDB database name, create on first run"
       label: "InfluxDB Database"
       required: true
-      default: "super_database"
       type: "string"
 
     - variable: influxdb_admin
       description: "InfluxDB admin, set on first run"
       label: "InfluxDB Admin"
       required: true
-      default: "influx_admin"
       type: "string"
 
     - variable: influxdb_admin_password
       description: "InfluxDB admin password, set on first run. Default: influx_admin_password"
       label: "InfluxDB Admin Password"
       required: true
-      default: "influx_admin_password"
       type: "password"
 
     - variable: influxdb_user
       description: "InfluxDB user, set on first run"
       label: "InfluxDB User"
       required: true
-      default: "influxdb_user"
       type: "string"
 
     - variable: influxdb_user_password
       description: "InfluxDB user password, set on first run. Default: influxdb_user_password"
       label: "InfluxDB User Password"
       required: true
-      default: "influxdb_user_password"
       type: "password"
 
-    - variable: grafana_url
-      description: "Grafana URL, used to generate assets url"
-      label: "Grafana URL"
+    - variable: influxdb_volume
+      description: "Specify path to store InfluxDB data."
+      label: "InfluxDB Volume"
       required: true
-      default: "http://localhost/"
       type: "string"
-
-    - variable: volume_driver
-      description: "Volume driver to use with this service"
-      label: "Volume driver"
-      required: true
-      default: "rancher-nfs"
-      type: enum
-      options:
-        - local
-        - rancher-nfs
 
 services:
 
