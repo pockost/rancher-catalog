@@ -1,6 +1,6 @@
 name: Graylog
 description: |
   Log management platform
-version: 1.0.0
+version: standard
 category: Logging
 maintainer: Maintained by Pockost company
