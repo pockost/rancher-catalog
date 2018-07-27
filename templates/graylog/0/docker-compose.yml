@@ -57,7 +57,7 @@ services:
       - ${graylog_volume}:/usr/share/graylog/data/journal
     tty: true
     ports:
-      - 127.0.0.1:12201:12201/udp
+      - 12201:12201/udp
     labels:
       io.rancher.container.pull_image: always
       io.rancher.container.dns: 'true'
