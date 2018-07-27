@@ -8,32 +8,46 @@ catalog:
   minimum_rancher_version: 1.6.0
   questions:
 
-    - variable: mongo_version
+    - variable: mongodb_version
       description: "Specify MongoDB base image version. Will be pull from Docker Hub"
       label: "MongoDB Version"
       required: true
-      default: "latest"
+      type: "string"
+
+    - variable: mongodb_volume
+      description: "Specify path to store MongoDB data"
+      label: "MongoDB Volume"
+      required: true
       type: "string"
 
     - variable: elasticsearch_version
       description: "Specify Elasticsearch base image version. Will be pull from Docker Hub"
       label: "Elasticsearch Version"
       required: true
-      default: "5.6.8"
+      type: "string"
+
+    - variable: elasticsearch_volume
+      description: "Specify path to store Elasticsearch data"
+      label: "Elasticsearch Volume"
+      required: true
       type: "string"
 
     - variable: elasticsearch_cluster_name
       description: "Elasticsearch cluster name"
       label: "Elasticsearch Cluster Name"
       required: true
-      default: "super_cluster"
       type: "string"
 
     - variable: graylog_version
       description: "Specify Graylog base image version. Will be pull from Docker Hub"
       label: "Graylog Version"
       required: true
-      default: "latest"
+      type: "string"
+
+    - variable: graylog_volume
+      description: "Specify path to store Graylog data"
+      label: "Graylog Volume"
+      required: true
       type: "string"
 
     - variable: graylog_password_secret
@@ -49,10 +63,9 @@ catalog:
       type: "string"
 
     - variable: graylog_web_endpoint_uri
-      description: "Graylog URL, used to generate assets' url"
+      description: "Graylog URL, used to generate assets url. Must end by slash"
       label: "Graylog URL"
       required: true
-      default: "http://localhost/"
       type: "string"
 
     - variable: timezone
@@ -61,13 +74,3 @@ catalog:
       required: true
       default: "Europe/Paris"
       type: "string"
-
-    - variable: volume_driver
-      description: "Volume driver to use with this service"
-      label: "Volume driver"
-      required: true
-      default: "rancher-nfs"
-      type: enum
-      options:
-        - local
-        - rancher-nfs

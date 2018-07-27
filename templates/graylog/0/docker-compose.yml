@@ -6,11 +6,11 @@ services:
   # MongoDB #
   ###########
   mongodb:
-    image: mongo:${mongo_version}
+    image: mongo:${mongodb_version}
     environment:
       TZ: ${timezone}
     volumes:
-      - mongodb_data:/data/db
+      - ${mongodb_volume}:/data/db
 
   #################
   # Elasticsearch #
@@ -30,7 +30,7 @@ services:
         hard: -1
     mem_limit: 1g
     volumes:
-      - elasticsearch_data:/usr/share/elasticsearch/data
+      - ${elasticsearch_volume}:/usr/share/elasticsearch/data
 
   ###########
   # Graylog #
@@ -43,18 +43,7 @@ services:
       GRAYLOG_WEB_ENDPOINT_URI: ${graylog_web_endpoint_uri}
       GRAYLOG_ROOT_TIMEZONE: ${timezone}
       TZ: ${timezone}
-      volumes:
-        - graylog_journal:/usr/share/graylog/data/journal
+    volumes:
+      - ${graylog_volume}:/usr/share/graylog/data/journal
     ports:
       - 127.0.0.1:12201:12201/udp
-
-volumes:
-
-  mongodb_data:
-    driver: ${volume_driver}
-
-  elasticsearch_data:
-    driver: ${volume_driver}
-
-  graylog_journal:
-    driver: ${volume_driver}
