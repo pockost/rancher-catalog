@@ -59,3 +59,10 @@ catalog:
       description: "This link will be used to customize error notification"
       label: "Slack link"
       type: "string"
+
+services:
+
+  backup:
+    retain_ip: true
+    scale: 1
+    start_on_create: true

@@ -2,10 +2,11 @@ version: '2'
 
 services:
 
+  ##########
+  # Backup #
+  ##########
   backup:
     image: pockost/borgbackup
-    volumes:
-      - ${borg_target}:${borg_target}
     environment:
       BORG_PASSPHRASE: ${borg_passphrase}
       BORG_TARGET: ${borg_target}
@@ -16,3 +17,9 @@ services:
       SLACK_WEBHOOK_URL: ${slack_webhook_url}
       SLACK_ALERT_IDENTIFIER: ${slack_alert_identifier}
       SLACK_ALERT_LINK: ${slack_alert_link}
+    stdin_open: true
+    volumes:
+      - ${borg_target}:${borg_target}
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
