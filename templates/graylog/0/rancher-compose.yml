@@ -74,3 +74,21 @@ catalog:
       required: true
       default: "Europe/Paris"
       type: "string"
+
+
+services:
+
+  mongodb:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
+
+  elasticsearch:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
+
+  graylog:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
