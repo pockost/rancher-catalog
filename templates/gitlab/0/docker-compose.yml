@@ -2,25 +2,46 @@ version: '2'
 
 services:
 
+  ##########
+  # GitLab #
+  ##########
   gitlab:
     image: gitlab/gitlab-ce:${gitlab_version}
+    environment:
+      GITLAB_OMNIBUS_CONFIG: ${gitlab_omnibus_config}
+    stdin_open: true
     volumes:
       - ${gitlab_data_volume}:/var/opt/gitlab
       - ${gitlab_log_volume}:/var/log/gitlab
       - ${gitlab_conf_volume}:/etc/gitlab
-    environment:
-      GITLAB_OMNIBUS_CONFIG: ${gitlab_omnibus_config}
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
     ports:
       - ${gitlab_ssh_port}:22/tcp
 
+  ############
+  # Runner01 #
+  ############
   runner01:
     image: gitlab/gitlab-runner:${gitlab_runner_version}
+    stdin_open: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${gitlab_runner01_volume}:/etc/gitlab-runner
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
 
+  ############
+  # Runner02 #
+  ############
   runner02:
     image: gitlab/gitlab-runner:${gitlab_runner_version}
+    stdin_open: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${gitlab_runner02_volume}:/etc/gitlab-runner
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always

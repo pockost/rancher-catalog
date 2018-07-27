@@ -90,3 +90,20 @@ catalog:
       label: "GitLab runner02 volume"
       required: true
       type: "string"
+
+services:
+
+  gitlab:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
+
+  runner01:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
+
+  runner02:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
