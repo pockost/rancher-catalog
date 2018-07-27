@@ -2,6 +2,9 @@ version: '2'
 
 services:
 
+  ############
+  # InfluxDB #
+  ############
   influxdb:
     image: influxdb:${influxdb_version}
     environment:
@@ -11,9 +14,16 @@ services:
       INFLUXDB_ADMIN_PASSWORD: ${influxdb_admin_password}
       INFLUXDB_USER: ${influxdb_user}
       INFLUXDB_USER_PASSWORD: ${influxdb_user_password}
+    stdin_open: true
     volumes:
       - ${influxdb_volume}:/var/lib/influxdb
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
 
+  ############
+  # Telegraf #
+  ############
   telegraf:
     image: pockost/telegraf-rancher
     environment:
@@ -25,8 +35,7 @@ services:
       INFLUXDB_NAME: ${influxdb_database}
       INFLUXDB_USER: ${influxdb_user}
       INFLUXDB_PASSWORD: ${influxdb_user_password}
-    depends_on:
-      - influxdb
+    stdin_open: true
     volumes:
     - /var/run/utmp:/var/run/utmp:ro
     - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -34,15 +43,21 @@ services:
     - /proc:/hostfs/proc:ro
     - /etc:/hostfs/etc:ro
     - /:/hostfs:ro
+    tty: true
     labels:
+      io.rancher.container.pull_image: always
       io.rancher.scheduler.global: 'true'
 
+  ###########
+  # Grafana #
+  ###########
   grafana:
     image: grafana/grafana:${grafana_version}
     environment:
       GF_SERVER_ROOT_URL: ${grafana_url}
+    stdin_open: true
     volumes:
       - ${grafana_volume}:/var/lib/grafana
-    depends_on:
-      - influxdb
-      - telegraf
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always

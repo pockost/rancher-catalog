@@ -68,3 +68,19 @@ catalog:
       label: "InfluxDB User Password"
       required: true
       type: "password"
+
+services:
+
+  influxdb:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
+
+  telegraf:
+    retain_ip: true
+    start_on_create: true
+
+  grafana:
+    retain_ip: true
+    scale: 1
+    start_on_create: true
