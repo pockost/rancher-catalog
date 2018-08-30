@@ -69,6 +69,11 @@ catalog:
       required: true
       type: "password"
 
+    - variable: mount_points
+      description: "Comma delimited list of the mount points watched by telegraf"
+      label: "Telegraf Mount Points"
+      type: "string"
+
 services:
 
   influxdb:

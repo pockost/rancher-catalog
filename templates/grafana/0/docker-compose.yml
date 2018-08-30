@@ -27,21 +27,16 @@ services:
   telegraf:
     image: pockost/telegraf-rancher
     environment:
-      HOST_ETC: /hostfs/etc
       HOST_MOUNT_PREFIX: /hostfs
-      HOST_PROC: /hostfs/proc
-      HOST_SYS: /hostfs/sys
       INFLUXDB_HOST: http://influxdb:8086
       INFLUXDB_NAME: ${influxdb_database}
       INFLUXDB_USER: ${influxdb_user}
       INFLUXDB_PASSWORD: ${influxdb_user_password}
+      MOUNT_POINTS: ${mount_points}
     stdin_open: true
     volumes:
     - /var/run/utmp:/var/run/utmp:ro
     - /var/run/docker.sock:/var/run/docker.sock:ro
-    - /sys:/hostfs/sys:ro
-    - /proc:/hostfs/proc:ro
-    - /etc:/hostfs/etc:ro
     - /:/hostfs:ro
     tty: true
     labels:
